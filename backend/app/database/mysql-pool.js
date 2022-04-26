@@ -8,6 +8,7 @@ const CONNECTION_LIMIT = 10;
 
 let pool = null;
 
+// Accdedemos a mysql con nuestras credenciales y probamos si conecta
 async function connect() {
   const options = {
     connectionLimit: CONNECTION_LIMIT,
@@ -32,6 +33,7 @@ async function connect() {
   }
 }
 
+// Para coger la conexión ya iniciada y pedir los datos
 async function getConnection() {
   if (pool === null) {
     throw new Error("MYSQL connection is not stablished");
