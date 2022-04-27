@@ -29,6 +29,7 @@ async function validateSchema(payload) {
 }
 
 async function createAccount(req, res) {
+  console.log(111111111, req);
   const accountData = { ...req.body };
   try {
     await validateSchema(accountData);
