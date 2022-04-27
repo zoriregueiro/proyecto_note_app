@@ -9,34 +9,29 @@
 // Retornamos datos a frontal
 const webToken = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const Joi = require("@hapi/joi");
+const Joi = require("joi");
 const mysqlPool = require("../../../database/mysql-pool");
-const { date } = require("@hapi/joi");
 const PASSWORD_REGEX = require("../../../constants").PASSWORD_REGEX;
 
 const HASH = 10;
 
-async function validateSchema(payload) {
-  const { object, string, assert } = joi;
-  const schema = object({
-    name: string().required(),
-    email: string().email().required(),
-    password: string().regex(PASSWORD_REGEX).required(),
-  });
-
-  //verificar que se cumplen los requistos a la hora de meter los datos del usuario, comparando el esquma con los datos de entrada
-  assert(payload, schema);
-}
-
 async function createAccount(req, res) {
-  console.log(111111111, req);
+  console.log(111111111, req.body);
   const accountData = { ...req.body };
+
   try {
-    await validateSchema(accountData);
+    const schema = Joi.object().keys({
+      name: Joi.string().required(),
+      email: Joi.string().email().required(),
+      password: Joi.string().regex(PASSWORD_REGEX).required(),
+    });
+    await schema.validateAsync(accountData);
   } catch (error) {
     return res.status(400).send(error);
   }
-  const now = new date();
+
+  console.log("los datos han sido validados");
+  const now = new Date();
   const createDate = now.toISOString().substring(0, 19).replace("T", " ");
   const securePassword = await bcrypt.hash(accountData.password, HASH);
   try {
