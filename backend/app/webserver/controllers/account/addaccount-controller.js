@@ -16,7 +16,6 @@ const PASSWORD_REGEX = require("../../../constants").PASSWORD_REGEX;
 const HASH = 10;
 
 async function createAccount(req, res) {
-  console.log(111111111, req.body);
   const accountData = { ...req.body };
 
   try {
@@ -30,7 +29,6 @@ async function createAccount(req, res) {
     return res.status(400).send(error);
   }
 
-  console.log("los datos han sido validados");
   const now = new Date();
   const createDate = now.toISOString().substring(0, 19).replace("T", " ");
   const securePassword = await bcrypt.hash(accountData.password, HASH);
@@ -44,8 +42,9 @@ async function createAccount(req, res) {
       created_at: createDate,
     });
     const sqlUser = `SELECT * FROM users WHERE email = '${accountData.email}'`;
-    const user = connection.query(sqlUser);
+    const user = await connection.query(sqlUser);
     console.log(user);
+    connection.release();
     res.status(201).send(user);
   } catch (error) {
     res.status(500).send(error);
