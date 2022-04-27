@@ -8,7 +8,7 @@
 // Soltamos conexión
 // Retornamos datos a frontal
 const webToken = require("jsonwebtoken");
-const hash = require("bcrypt").hash();
+const bcrypt = require("bcrypt");
 const Joi = require("@hapi/joi");
 const mysqlPool = require("../../../database/mysql-pool");
 const { date } = require("@hapi/joi");
@@ -38,7 +38,7 @@ async function createAccount(req, res) {
   }
   const now = new date();
   const createDate = now.toISOString().substring(0, 19).replace("T", " ");
-  const securePassword = await hash(accountData.password, HASH);
+  const securePassword = await bcrypt.hash(accountData.password, HASH);
   try {
     const connection = await mysqlPool.getConnection();
     const sqlQuery = "INSERT INTO users SET ?";
