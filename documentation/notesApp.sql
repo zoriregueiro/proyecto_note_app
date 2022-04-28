@@ -31,3 +31,7 @@ CREATE TABLE categories(
     deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_user) REFERENCES users (id)
 );
+
+ALTER TABLE notes ADD (id_category INT UNSIGNED,
+    FOREIGN KEY (id_category) REFERENCES categories (id)
+);

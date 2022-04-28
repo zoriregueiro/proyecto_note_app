@@ -35,9 +35,8 @@ async function login(req, res) {
     }
 
     const payloadJwt = { user_id: user.id };
-    console.log(payloadJwt);
     const jwtExpiresIn = parseInt(process.env.AUTH_ACCESS_TOKEN_TTL);
-    console.log(jwtExpiresIn);
+
     const token = jsonWebToken.sign(payloadJwt, process.env.AUTH_JWT_SECRET, {
       expiresIn: jwtExpiresIn,
     });
