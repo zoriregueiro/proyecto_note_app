@@ -1,6 +1,5 @@
 "use strict";
 
-const { func } = require("joi");
 const Joi = require("joi");
 const mysqlPool = require("../../../database/mysql-pool");
 
@@ -22,6 +21,7 @@ async function createNote(req, res) {
   } catch (error) {
     return res.status(400).send(error);
   }
+  
   const now = new Date();
   const createDate = now.toISOString().substring(0, 19).replace("T", " ");
 
