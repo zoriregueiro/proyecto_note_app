@@ -2,7 +2,12 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const { accountRouter, authRouter, notesRouter } = require("./routes/index");
+const {
+  accountRouter,
+  authRouter,
+  notesRouter,
+  categoriesRouter,
+} = require("./routes/index");
 
 const app = express();
 app.use(cors());
@@ -12,6 +17,7 @@ app.use(bodyParser.json());
 app.use("/api/account", accountRouter);
 app.use("/api/login", authRouter);
 app.use("/api/notes", notesRouter);
+app.use("/api/categories", categoriesRouter);
 
 let server = null;
 

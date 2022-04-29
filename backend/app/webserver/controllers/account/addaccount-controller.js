@@ -43,7 +43,7 @@ async function createAccount(req, res) {
     });
     const sqlUser = `SELECT * FROM users WHERE email = '${accountData.email}'`;
     const user = await connection.query(sqlUser);
-    console.log(user);
+
     connection.release();
     res.status(201).send(user);
   } catch (error) {

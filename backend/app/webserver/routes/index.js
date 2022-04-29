@@ -3,5 +3,7 @@
 const { accountRouter } = require("./account-router");
 const { authRouter } = require("./auth-router");
 const { notesRouter } = require("./notes-router");
+const { categoriesRouter } = require("./categories-router");
 
-module.exports = { accountRouter, authRouter, notesRouter };
+
+module.exports = { accountRouter, authRouter, notesRouter, categoriesRouter };

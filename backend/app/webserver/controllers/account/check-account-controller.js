@@ -4,8 +4,7 @@ const jsonwebtoken = require("jsonwebtoken");
 
 async function checkAccountSession(req, res, next) {
   const { authorization } = req.headers;
-  // Bearer eykufrkufhrkjvhc...
-  console.log(authorization);
+  
   if (!authorization) {
     res.status(401).send("user not registered");
   }
@@ -25,7 +24,7 @@ async function checkAccountSession(req, res, next) {
     req.claims = {
       user_id,
     };
-    console.log("el token ha ido bien");
+   
 
     return next();
   } catch (error) {

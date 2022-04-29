@@ -18,8 +18,9 @@ async function getNote(req, res) {
   }
   try {
     const connection = await mysqlPool.getConnection();
-     const sqlQuery = `SELECT * FROM notes WHERE id = '${noteData.noteId}'`;
+    const sqlQuery = `SELECT * FROM notes WHERE id = '${noteData.noteId}'`;
     const [note] = await connection.query(sqlQuery);
+    connection.release();
     res.status(200).send(note);
   } catch (error) {
     res.status(500).send(error);

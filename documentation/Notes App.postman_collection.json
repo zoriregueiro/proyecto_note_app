@@ -1,0 +1,357 @@
+{
+	"info": {
+		"_postman_id": "29a2ddca-e7ef-47b5-b1c8-dd760f45423e",
+		"name": "Notes App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"zori\",\n    \"email\": \"zoriregueiro@gmail.com\",\n    \"password\": \"aA123456\"\n\n}"
+				},
+				"url": {
+					"raw": "localhost:8000/api/account",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"account"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:8000/api/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create note",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTExNjc5NTAsImV4cCI6MTY1Mzc1OTk1MH0.8bMfkE59OB75szrwZUt6ZY6eEUA8legxd9Q6ld9rkQc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id_category\": 1,\n   \"title\": \"lista semanal\",\n   \"content\": \"platanos, arroz\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/notes",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"notes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update note",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTExNjc5NTAsImV4cCI6MTY1Mzc1OTk1MH0.8bMfkE59OB75szrwZUt6ZY6eEUA8legxd9Q6ld9rkQc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8000/api/notes?noteId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"notes"
+					],
+					"query": [
+						{
+							"key": "noteId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "visibility",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTExNjc5NTAsImV4cCI6MTY1Mzc1OTk1MH0.8bMfkE59OB75szrwZUt6ZY6eEUA8legxd9Q6ld9rkQc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/notes/visibility",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"notes",
+						"visibility"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get notes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTExNjc5NTAsImV4cCI6MTY1Mzc1OTk1MH0.8bMfkE59OB75szrwZUt6ZY6eEUA8legxd9Q6ld9rkQc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/notes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"notes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get note",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTExNjc5NTAsImV4cCI6MTY1Mzc1OTk1MH0.8bMfkE59OB75szrwZUt6ZY6eEUA8legxd9Q6ld9rkQc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/notes/note/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"notes",
+						"note",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete note",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTExNjc5NTAsImV4cCI6MTY1Mzc1OTk1MH0.8bMfkE59OB75szrwZUt6ZY6eEUA8legxd9Q6ld9rkQc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/notes/delete/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"notes",
+						"delete",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "post category",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTExNjc5NTAsImV4cCI6MTY1Mzc1OTk1MH0.8bMfkE59OB75szrwZUt6ZY6eEUA8legxd9Q6ld9rkQc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/categories/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categories",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get categories",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTExNjc5NTAsImV4cCI6MTY1Mzc1OTk1MH0.8bMfkE59OB75szrwZUt6ZY6eEUA8legxd9Q6ld9rkQc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/categories/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categories",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update categories",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTExNjc5NTAsImV4cCI6MTY1Mzc1OTk1MH0.8bMfkE59OB75szrwZUt6ZY6eEUA8legxd9Q6ld9rkQc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"categoryId\": 1,\n    \"name\": \"compra\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/categories/update",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categories",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete category",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJpYXQiOjE2NTExNjc5NTAsImV4cCI6MTY1Mzc1OTk1MH0.8bMfkE59OB75szrwZUt6ZY6eEUA8legxd9Q6ld9rkQc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/categories/delete",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"categories",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
