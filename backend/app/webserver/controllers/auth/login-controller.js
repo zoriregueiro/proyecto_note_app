@@ -22,8 +22,6 @@ async function login(req, res) {
     const sqlQuery = `SELECT * FROM users WHERE email = '${authData.email}'`;
     const [response] = await connection.query(sqlQuery);
 
-    connection.release();
-
     if (response.length === 0) {
       return res.status(401).send("Account not registered");
     }
@@ -40,11 +38,12 @@ async function login(req, res) {
     const token = jsonWebToken.sign(payloadJwt, process.env.AUTH_JWT_SECRET, {
       expiresIn: jwtExpiresIn,
     });
-    
 
     res.status(200).send({ user, token });
   } catch (error) {
     res.status(500).send(error);
+  } finally {
+    if (connection) connection.release();
   }
 }
 

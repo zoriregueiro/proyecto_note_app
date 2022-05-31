@@ -34,10 +34,12 @@ async function createNote(req, res) {
       visibility: "private",
       created_at: createDate,
     });
-    connection.release();
+
     res.status(201).send("note created");
   } catch (error) {
     res.status(500).send(error);
+  } finally {
+    if (connection) connection.release();
   }
 }
 

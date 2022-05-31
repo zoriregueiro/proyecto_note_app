@@ -16,17 +16,24 @@ async function updateCategory(req, res) {
     return res.status(400).send(error);
   }
   try {
+    const now = new Date();
+    const modifiedDate = now.toISOString().substring(0, 19).replace("T", " ");
+
     const connection = await mysqlPool.getConnection();
-    const sqlQuery = "UPDATE categories SET name = ? WHERE id = ?;";
+    const sqlQuery =
+      "UPDATE categories SET name = ?, modified_at = ? WHERE id = ?;";
 
     await connection.query(sqlQuery, [
       categoryData.name,
+      modifiedDate,
       categoryData.categoryId,
     ]);
-    connection.release();
+
     res.status(204).send("category update");
   } catch (error) {
     res.status(500).send(error);
+  } finally {
+    if (connection) connection.release();
   }
 }
 

@@ -29,6 +29,8 @@ async function deleteCategory(req, res) {
     res.status(204).send("category removed");
   } catch (error) {
     res.status(500).send(error);
+  } finally {
+    if (connection) connection.release();
   }
 }
 

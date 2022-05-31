@@ -19,10 +19,12 @@ async function getCategories(req, res) {
     const connection = await mysqlPool.getConnection();
     const sqlQuery = `SELECT * FROM categories WHERE id_user = '${categoryData.user_id}' AND deleted_at IS NULL`;
     const [categories] = await connection.query(sqlQuery);
-    connection.release();
+
     res.status(200).send(categories);
   } catch (error) {
     res.status(500).send(error);
+  } finally {
+    if (connection) connection.release();
   }
 }
 

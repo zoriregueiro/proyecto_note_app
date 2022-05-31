@@ -26,10 +26,12 @@ async function createCategory(req, res) {
       name: categoryData.name,
       created_at: createDate,
     });
-    connection.release();
+
     res.status(201).send("category created");
   } catch (error) {
     res.status(500).send(error);
+  } finally {
+    if (connection) connection.release();
   }
 }
 

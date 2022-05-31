@@ -22,10 +22,12 @@ async function getNotes(req, res) {
     const connection = await mysqlPool.getConnection();
     const sqlQuery = `SELECT * FROM notes WHERE id_category = '${noteData.categoryId}' AND id_user = '${noteData.user_id}' AND deleted_at IS NULL`;
     const [notes] = await connection.query(sqlQuery);
-    connection.release();
+
     res.status(200).send(notes);
   } catch (error) {
     res.status(500).send(error);
+  } finally {
+    if (connection) connection.release();
   }
 }
 
