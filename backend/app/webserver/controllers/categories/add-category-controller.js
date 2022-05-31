@@ -6,6 +6,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 async function createCategory(req, res) {
   const { user_id } = req.claims;
   const categoryData = { ...req.body, user_id };
+  let connection;
 
   try {
     const schema = Joi.object().keys({
@@ -19,7 +20,7 @@ async function createCategory(req, res) {
   const now = new Date();
   const createDate = now.toISOString().substring(0, 19).replace("T", " ");
   try {
-    const connection = await mysqlPool.getConnection();
+    connection = await mysqlPool.getConnection();
     const sqlQuery = "INSERT INTO categories SET ?";
     await connection.query(sqlQuery, {
       id_user: categoryData.user_id,

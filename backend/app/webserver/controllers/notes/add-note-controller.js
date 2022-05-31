@@ -5,6 +5,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 
 async function createNote(req, res) {
   const { user_id } = req.claims;
+  let connection;
 
   const noteData = { ...req.body, user_id };
 
@@ -24,7 +25,7 @@ async function createNote(req, res) {
   const createDate = now.toISOString().substring(0, 19).replace("T", " ");
 
   try {
-    const connection = await mysqlPool.getConnection();
+    connection = await mysqlPool.getConnection();
     const sqlQuery = "INSERT INTO notes SET ?";
     await connection.query(sqlQuery, {
       id_user: noteData.user_id,

@@ -5,6 +5,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 
 async function getNote(req, res) {
   const { noteId } = req.params;
+  let connection;
 
   const noteData = { noteId };
 
@@ -17,7 +18,7 @@ async function getNote(req, res) {
     return res.status(400).send(error);
   }
   try {
-    const connection = await mysqlPool.getConnection();
+    connection = await mysqlPool.getConnection();
     const sqlQuery = `SELECT * FROM notes WHERE id = '${noteData.noteId}'`;
     const [note] = await connection.query(sqlQuery);
 

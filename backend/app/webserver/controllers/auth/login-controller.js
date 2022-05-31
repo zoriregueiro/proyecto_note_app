@@ -6,6 +6,7 @@ const jsonWebToken = require("jsonwebtoken");
 
 async function login(req, res) {
   const authData = { ...req.body };
+  let connection;
 
   try {
     const schema = Joi.object().keys({
@@ -18,7 +19,7 @@ async function login(req, res) {
   }
 
   try {
-    const connection = await mysqlPool.getConnection();
+    connection = await mysqlPool.getConnection();
     const sqlQuery = `SELECT * FROM users WHERE email = '${authData.email}'`;
     const [response] = await connection.query(sqlQuery);
 

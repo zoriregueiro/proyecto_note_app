@@ -1,5 +1,5 @@
 "use strict";
-// Crear rutas para todos los controllers relacionados con la cuenta
+
 const { Router } = require("express");
 const {
   createAccount,

@@ -7,6 +7,7 @@ const HASH = 10;
 
 async function createAccount(req, res) {
   const accountData = { ...req.body };
+  let connection;
 
   try {
     const schema = Joi.object().keys({
@@ -23,7 +24,7 @@ async function createAccount(req, res) {
   const createDate = now.toISOString().substring(0, 19).replace("T", " ");
   const securePassword = await bcrypt.hash(accountData.password, HASH);
   try {
-    const connection = await mysqlPool.getConnection();
+    connection = await mysqlPool.getConnection();
 
     const sqlUserVerification = `SELECT * FROM users WHERE email = '${accountData.email}'`;
     const [userVerification] = await connection.query(sqlUserVerification);

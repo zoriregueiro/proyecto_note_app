@@ -5,6 +5,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 
 async function updateCategory(req, res) {
   const categoryData = { ...req.body };
+  let connection;
 
   try {
     const schema = Joi.object().keys({
@@ -19,7 +20,7 @@ async function updateCategory(req, res) {
     const now = new Date();
     const modifiedDate = now.toISOString().substring(0, 19).replace("T", " ");
 
-    const connection = await mysqlPool.getConnection();
+    connection = await mysqlPool.getConnection();
     const sqlQuery =
       "UPDATE categories SET name = ?, modified_at = ? WHERE id = ?;";
 

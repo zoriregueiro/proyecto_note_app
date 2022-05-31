@@ -5,6 +5,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 
 async function deleteNote(req, res) {
   const { noteId } = req.params;
+  let connection;
 
   const noteData = { noteId };
 
@@ -19,7 +20,7 @@ async function deleteNote(req, res) {
   const now = new Date();
   const deleteDate = now.toISOString().substring(0, 19).replace("T", " ");
   try {
-    const connection = await mysqlPool.getConnection();
+    connection = await mysqlPool.getConnection();
     const sqlQuery = `UPDATE notes SET deleted_at = '${deleteDate}' WHERE id = '${noteData.noteId}' AND deleted_at IS NULL`;
     await connection.query(sqlQuery);
 

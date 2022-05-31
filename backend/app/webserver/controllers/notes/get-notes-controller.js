@@ -6,6 +6,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 async function getNotes(req, res) {
   const { categoryId } = req.params;
   const { user_id } = req.claims;
+  let connection;
 
   const noteData = { user_id, categoryId };
 
@@ -19,7 +20,7 @@ async function getNotes(req, res) {
     return res.status(400).send(error);
   }
   try {
-    const connection = await mysqlPool.getConnection();
+    connection = await mysqlPool.getConnection();
     const sqlQuery = `SELECT * FROM notes WHERE id_category = '${noteData.categoryId}' AND id_user = '${noteData.user_id}' AND deleted_at IS NULL`;
     const [notes] = await connection.query(sqlQuery);
 

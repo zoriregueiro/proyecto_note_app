@@ -6,6 +6,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 async function getCategories(req, res) {
   const { user_id } = req.claims;
   const categoryData = { user_id };
+  let connection;
 
   try {
     const schema = Joi.object().keys({
@@ -16,7 +17,7 @@ async function getCategories(req, res) {
     return res.status(400).send(error);
   }
   try {
-    const connection = await mysqlPool.getConnection();
+    connection = await mysqlPool.getConnection();
     const sqlQuery = `SELECT * FROM categories WHERE id_user = '${categoryData.user_id}' AND deleted_at IS NULL`;
     const [categories] = await connection.query(sqlQuery);
 

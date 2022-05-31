@@ -5,6 +5,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 
 async function deleteCategory(req, res) {
   const { categoryId } = req.params;
+  let connection;
 
   const categoryData = { categoryId };
 
@@ -20,7 +21,7 @@ async function deleteCategory(req, res) {
   const deleteDate = now.toISOString().substring(0, 19).replace("T", " ");
 
   try {
-    const connection = await mysqlPool.getConnection();
+    connection = await mysqlPool.getConnection();
     const sqlQuery = `UPDATE categories SET deleted_at = '${deleteDate}' WHERE id = '${categoryData.categoryId}' AND deleted_at IS NULL`;
     await connection.query(sqlQuery);
 

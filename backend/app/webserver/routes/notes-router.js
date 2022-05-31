@@ -14,8 +14,12 @@ const {
 const { getNotes } = require("../controllers/notes/get-notes-controller");
 const { getNote } = require("../controllers/notes/get-note-controller");
 const { deleteNote } = require("../controllers/notes/delete-note");
+const {
+  getLatestNotes,
+} = require("../controllers/notes/get-latest-notes-controller");
 const notesRouter = Router();
 
+notesRouter.get("/latest", getLatestNotes);
 notesRouter.post("/", checkAccountSession, createNote);
 notesRouter.put("/update", checkAccountSession, updateNote);
 notesRouter.put("/visibility", checkAccountSession, updateNoteVisibility);

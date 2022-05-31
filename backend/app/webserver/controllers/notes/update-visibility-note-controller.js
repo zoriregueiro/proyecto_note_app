@@ -5,6 +5,8 @@ const mysqlPool = require("../../../database/mysql-pool");
 
 async function updateNoteVisibility(req, res) {
   const noteData = { ...req.body };
+  let connection;
+
   try {
     const schema = Joi.object().keys({
       id: Joi.number().required(),
@@ -16,16 +18,16 @@ async function updateNoteVisibility(req, res) {
   }
 
   try {
-    const connection = await mysqlPool.getConnection();
+    connection = await mysqlPool.getConnection();
     const sqlQuery = "UPDATE notes SET visibility = ? WHERE id = ?;";
 
     await connection.query(sqlQuery, [noteData.visibility, noteData.id]);
-    
+
     res.status(204).send("note visibility updated");
   } catch (error) {
     res.status(500).send(error);
-  }finally{
-    if(connection)connection.release();
+  } finally {
+    if (connection) connection.release();
   }
 }
 

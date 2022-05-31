@@ -5,6 +5,8 @@ const mysqlPool = require("../../../database/mysql-pool");
 
 async function updateNote(req, res) {
   const noteData = { ...req.body };
+  let connection;
+
   try {
     const schema = Joi.object().keys({
       id: Joi.number().required(),
@@ -20,7 +22,7 @@ async function updateNote(req, res) {
     const now = new Date();
     const modifiedDate = now.toISOString().substring(0, 19).replace("T", " ");
 
-    const connection = await mysqlPool.getConnection();
+    connection = await mysqlPool.getConnection();
     const sqlQuery =
       "UPDATE notes SET title = ?, content = ?, modified_at = ? WHERE id = ? ;";
 
