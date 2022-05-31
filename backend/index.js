@@ -3,7 +3,6 @@ require("dotenv").config();
 const mysqlPool = require("./app/database/mysql-pool");
 const webServer = require("./app/webserver/index");
 
-
 const httpListenigPort = process.env.PORT;
 
 async function initApp() {
