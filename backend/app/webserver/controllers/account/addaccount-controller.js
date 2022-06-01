@@ -48,6 +48,7 @@ async function createAccount(req, res) {
     res.status(201).send({
       name: user.name,
       email: user.email,
+      token: user.token,
     });
   } catch (error) {
     res.status(500).send(error);
