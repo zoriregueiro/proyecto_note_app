@@ -52,17 +52,17 @@ export const NoteList = () => {
     },
   ];
 
-  return (
-    <>
-      <ul className="note-list">
-        {notesMock.map((note) => {
-          return (
-            <li>
-              <Note />
-            </li>
-          );
-        })}
-      </ul>
-    </>
+  return notesMock.length ? (
+    <ul className="note-list">
+      {notesMock.map((note) => {
+        return (
+          <li key={note.id}>
+            <Note />
+          </li>
+        );
+      })}
+    </ul>
+  ) : (
+    <p>There are no notes...</p>
   );
 };
