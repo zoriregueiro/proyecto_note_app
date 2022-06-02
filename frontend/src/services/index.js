@@ -6,7 +6,7 @@ const token = currentUser?.token;
 
 function isBearerTokenRequired(url) {
   const parsedUrl = new URL(url);
-  const publicRoutes = ["/login", "/register"];
+  const publicRoutes = ["/login", "/register", "/latest"];
 
   if (publicRoutes.includes(parsedUrl.pathname)) {
     return false;
