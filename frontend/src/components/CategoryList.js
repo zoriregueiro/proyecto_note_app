@@ -1,7 +1,5 @@
-import { Note } from "./Note";
-
-export const NoteList = () => {
-  const notesMock = [
+export const CategoryList = () => {
+  const categoryMock = [
     {
       id: 6,
       id_user: 1,
@@ -52,17 +50,17 @@ export const NoteList = () => {
     },
   ];
 
-  return notesMock.length ? (
-    <ul className="note-list">
-      {notesMock.map((note) => {
+  return categoryMock.length ? (
+    <ul className="category-list">
+      {categoryMock.map((category) => {
         return (
-          <li key={note.id}>
-            <Note />
+          <li key={category.id}>
+            <Category />
           </li>
         );
       })}
     </ul>
   ) : (
-    <p>There are no notes...</p>
+    <p>There are no categories...</p>
   );
 };
