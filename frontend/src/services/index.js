@@ -1,5 +1,18 @@
 import axios from "axios";
 import { login, register } from "./authService.js";
+import {
+  getNotes,
+  getNote,
+  createNote,
+  deleteNote,
+  updateNote,
+  updateNoteVisibility,
+  getLatestNotes,
+  getCategories,
+  createCategory,
+  deleteCategory,
+  updateCategory,
+} from "./notesService";
 
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 const token = currentUser?.token;
@@ -46,6 +59,18 @@ axios.interceptors.response.use(
   }
 );
 
-
-
-export { login, register };
+export {
+  login,
+  register,
+  getNotes,
+  getNote,
+  createNote,
+  deleteNote,
+  updateNote,
+  updateNoteVisibility,
+  getLatestNotes,
+  getCategories,
+  createCategory,
+  deleteCategory,
+  updateCategory,
+};
