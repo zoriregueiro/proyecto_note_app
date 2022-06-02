@@ -1,27 +1,52 @@
-import { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useAuth } from "../../context/auth-context";
+import { EMAIL_REGEX } from "../../utils/constants";
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { signIn } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    setError,
+    formState: { errors },
+  } = useForm({ mode: "onBlur" });
 
-  const handleForm = (e) => {
-    e.preventDefault();
+  const handleSignIn = (formData) => {
+    try {
+      console.log(22222);
+      signIn(formData);
+    } catch (error) {
+      console.log(11111);
+      setError(
+        "password",
+        "invalidCredentials",
+        "The email or the password are invalid"
+      );
+      setValue("password", "");
+    }
   };
 
   return (
     <section>
       <h1>Login</h1>
-      <form onSubmit={handleForm}>
+      <form onSubmit={handleSubmit(handleSignIn)}>
         <fieldset>
           <label htmlFor="email">Email</label>
           <input
             type="email"
             name="email"
             id="email"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
+            {...register("email", {
+              required: "Campo requerido",
+              pattern: {
+                message: "El email no es valido",
+                value: EMAIL_REGEX,
+              },
+            })}
           />
+          <span>{errors?.email && errors.email.message}</span>
         </fieldset>
         <fieldset>
           <label htmlFor="password">Password</label>
@@ -29,10 +54,11 @@ export const Login = () => {
             type="password"
             name="password"
             id="password"
-            value={password}
-            required
-            onChange={(e) => setPassword(e.target.value)}
+            {...register("password", {
+              required: "Campo requerido",
+            })}
           />
+          <span>{errors?.password && errors.password.message}</span>
         </fieldset>
 
         <button>Login</button>
