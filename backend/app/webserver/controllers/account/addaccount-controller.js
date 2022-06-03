@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const Joi = require("joi");
 const mysqlPool = require("../../../database/mysql-pool");
 const PASSWORD_REGEX = require("../../../constants").PASSWORD_REGEX;
+const jsonWebToken = require("jsonwebtoken");
 
 const HASH = 10;
 
@@ -29,7 +30,7 @@ async function createAccount(req, res) {
     const sqlUserVerification = `SELECT * FROM users WHERE email = '${accountData.email}'`;
     const [userVerification] = await connection.query(sqlUserVerification);
     if (userVerification.length > 0) {
-      throw generateError(
+      throw new Error(
         "Ya existe un usuario en la base de datos con ese email",
         409
       );
@@ -44,12 +45,14 @@ async function createAccount(req, res) {
     });
     const sqlUser = `SELECT * FROM users WHERE email = '${accountData.email}'`;
     const [user] = await connection.query(sqlUser);
+    const payloadJwt = { user_id: user.id };
+    const jwtExpiresIn = parseInt(process.env.AUTH_ACCESS_TOKEN_TTL);
 
-    res.status(201).send({
-      name: user.name,
-      email: user.email,
-      token: user.token,
+    const token = jsonWebToken.sign(payloadJwt, process.env.AUTH_JWT_SECRET, {
+      expiresIn: jwtExpiresIn,
     });
+
+    res.status(201).send({ user, token });
   } catch (error) {
     res.status(500).send(error);
   } finally {

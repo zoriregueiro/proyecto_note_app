@@ -15,7 +15,7 @@ export function AuthProvider({ children }) {
       const {
         data: { user, token },
       } = await login(email, password);
-      setUser(user);
+      setUser(user[0]);
       setIsAuthenticated(true);
       if (token) {
         navigate("/");
@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
       const {
         data: { user, token },
       } = await register(name, email, password);
-      setUser(user);
+      setUser(user[0]);
       setIsAuthenticated(true);
       if (token) {
         navigate("/");

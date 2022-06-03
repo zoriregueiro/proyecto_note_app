@@ -13,17 +13,14 @@ export const Login = () => {
     formState: { errors },
   } = useForm({ mode: "onBlur" });
 
-  const handleSignIn = (formData) => {
+  const handleSignIn = async (formData) => {
     try {
-      console.log(22222);
-      signIn(formData);
+      await signIn(formData);
     } catch (error) {
-      console.log(11111);
-      setError(
-        "password",
-        "invalidCredentials",
-        "The email or the password are invalid"
-      );
+      setError("password", {
+        type: "custom",
+        message: "The email or the password are invalid",
+      });
       setValue("password", "");
     }
   };

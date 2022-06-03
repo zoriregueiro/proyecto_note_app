@@ -1,28 +1,52 @@
-import { useState } from "react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { useAuth } from "../../context/auth-context";
+import { EMAIL_REGEX, PASSWORD_REGEX } from "../../utils/constants";
 
 export const Register = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { signUp } = useAuth();
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    setError,
+    formState: { errors },
+  } = useForm({ mode: "onBlur" });
 
-  const handleForm = async (e) => {
-    e.preventDefault();
+  const handleSignUp = async (formData) => {
+    try {
+      const password = getValues("password");
+      const repeatPassword = getValues("repeat_password");
+      if (password === repeatPassword) {
+        await signUp(formData);
+      } else {
+        setError("repeat_password", {
+          type: "custom",
+          message: "Passwords don't match",
+        });
+      }
+    } catch (error) {
+      setError("email", {
+        type: "custom",
+        message: "This email is already used",
+      });
+    }
   };
-
   return (
     <section>
       <h1>Register</h1>
-      <form onSubmit={handleForm}>
+      <form onSubmit={handleSubmit(handleSignUp)}>
         <fieldset>
           <label htmlFor="name">Name</label>
           <input
             type="text"
             id="name"
             name="name"
-            value={name}
-            required
-            onChange={(e) => setName(e.target.value)}
+            {...register("name", {
+              required: "Campo requerido",
+            })}
           />
+          <span>{errors?.name && errors.name.message}</span>
         </fieldset>
         <fieldset>
           <label htmlFor="email">Email</label>
@@ -30,10 +54,15 @@ export const Register = () => {
             type="email"
             id="email"
             name="email"
-            value={email}
-            required
-            onChange={(e) => setEmail(e.target.value)}
+            {...register("email", {
+              required: "Campo requerido",
+              pattern: {
+                message: "El email no es valido",
+                value: EMAIL_REGEX,
+              },
+            })}
           />
+          <span>{errors?.email && errors.email.message}</span>
         </fieldset>
         <fieldset>
           <label htmlFor="password">Password</label>
@@ -41,10 +70,29 @@ export const Register = () => {
             type="password"
             id="password"
             name="password"
-            value={password}
-            required
-            onChange={(e) => setPassword(e.target.value)}
+            {...register("password", {
+              required: "Campo requerido",
+              pattern: {
+                message: "La contraseña no es valida",
+                value: PASSWORD_REGEX,
+              },
+            })}
           />
+          <span>{errors?.password && errors.password.message}</span>
+        </fieldset>
+        <fieldset>
+          <label htmlFor="password">Repeat Password</label>
+          <input
+            type="password"
+            id="repeat_password"
+            name="repeat_password"
+            {...register("repeat_password", {
+              required: "Campo requerido",
+            })}
+          />
+          <span>
+            {errors?.repeat_password && errors.repeat_password.message}
+          </span>
         </fieldset>
         <button>Register</button>
       </form>
