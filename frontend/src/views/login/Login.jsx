@@ -1,3 +1,4 @@
+import "./login.css";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/auth-context";
@@ -26,9 +27,9 @@ export const Login = () => {
   };
 
   return (
-    <section>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit(handleSignIn)}>
+    <section className="login">
+      <h2>Login</h2>
+      <form className="login-form" onSubmit={handleSubmit(handleSignIn)}>
         <fieldset>
           <label htmlFor="email">Email</label>
           <input
@@ -36,9 +37,9 @@ export const Login = () => {
             name="email"
             id="email"
             {...register("email", {
-              required: "Campo requerido",
+              required: "Required field",
               pattern: {
-                message: "El email no es valido",
+                message: "The email is not valid",
                 value: EMAIL_REGEX,
               },
             })}
@@ -52,13 +53,13 @@ export const Login = () => {
             name="password"
             id="password"
             {...register("password", {
-              required: "Campo requerido",
+              required: "Required field",
             })}
           />
           <span>{errors?.password && errors.password.message}</span>
         </fieldset>
 
-        <button>Login</button>
+        <button className="login-button">Login</button>
       </form>
     </section>
   );

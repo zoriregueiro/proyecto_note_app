@@ -1,3 +1,4 @@
+import "./register.css";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/auth-context";
@@ -33,9 +34,9 @@ export const Register = () => {
     }
   };
   return (
-    <section>
-      <h1>Register</h1>
-      <form onSubmit={handleSubmit(handleSignUp)}>
+    <section className="register">
+      <h2>Register</h2>
+      <form className="register-form" onSubmit={handleSubmit(handleSignUp)}>
         <fieldset>
           <label htmlFor="name">Name</label>
           <input
@@ -43,7 +44,7 @@ export const Register = () => {
             id="name"
             name="name"
             {...register("name", {
-              required: "Campo requerido",
+              required: "Required field",
             })}
           />
           <span>{errors?.name && errors.name.message}</span>
@@ -55,9 +56,9 @@ export const Register = () => {
             id="email"
             name="email"
             {...register("email", {
-              required: "Campo requerido",
+              required: "Required field",
               pattern: {
-                message: "El email no es valido",
+                message: "The email is not valid",
                 value: EMAIL_REGEX,
               },
             })}
@@ -71,9 +72,9 @@ export const Register = () => {
             id="password"
             name="password"
             {...register("password", {
-              required: "Campo requerido",
+              required: "Required field",
               pattern: {
-                message: "La contraseña no es valida",
+                message: "The password is not valid",
                 value: PASSWORD_REGEX,
               },
             })}
@@ -87,14 +88,14 @@ export const Register = () => {
             id="repeat_password"
             name="repeat_password"
             {...register("repeat_password", {
-              required: "Campo requerido",
+              required: "Required field",
             })}
           />
           <span>
             {errors?.repeat_password && errors.repeat_password.message}
           </span>
         </fieldset>
-        <button>Register</button>
+        <button className="register-button">Register</button>
       </form>
     </section>
   );

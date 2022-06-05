@@ -4,8 +4,12 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: rgb(254, 251, 246);
+}
+
 header {
-  background-color: rgb(38, 38, 38);
+  background: #222222;
   color: white;
   padding: 1rem;
   display: flex;
@@ -41,7 +45,7 @@ li {
 }
 
 footer {
-  background-color: rgb(38, 38, 38);
+  background: #222222;
   color: white;
   padding: 1rem;
 }

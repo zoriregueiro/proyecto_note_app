@@ -1,0 +1,25 @@
+.note-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.note-list li {
+  background-color: rgb(161, 235, 255);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  max-width: 20rem;
+  min-height: 10rem;
+}
+
+.note-list li:nth-child(4n + 1) {
+  background-color: rgb(255, 255, 190);
+}
+
+.note-list li:nth-child(4n + 2) {
+  background-color: rgb(190, 255, 214);
+}
+
+.note-list li:nth-child(4n + 3) {
+  background-color: rgb(255, 190, 254);
+}

@@ -3,7 +3,7 @@ import { NoteList } from "../../components/NoteList";
 
 export const Home = () => {
   return (
-    <section>
+    <section className="home">
       <h2>Latest Notes</h2>
       <NoteList />
     </section>

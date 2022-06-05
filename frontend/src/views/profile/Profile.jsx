@@ -1,3 +1,5 @@
+import "./profile.css";
+
 export const UserProfile = () => {
   const notesMock = [
     {
@@ -10,7 +12,7 @@ export const UserProfile = () => {
     <section className="user-data">
       <p>Email: {notesMock.email}</p>
       <p>Name: {notesMock.name}</p>
-      <button>Log out</button>
+      <button className="logout-button">Log out</button>
     </section>
   );
 };

@@ -1,3 +1,4 @@
+import "./css/noteList.css";
 import { Note } from "./Note";
 
 export const NoteList = () => {

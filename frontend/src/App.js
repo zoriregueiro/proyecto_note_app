@@ -10,12 +10,10 @@ import { MyNotes } from "./views/my-notes/MyNotes";
 import { Footer } from "./components/Footer";
 import { NotFound } from "./views/not-found/NotFound";
 
-
 function App() {
   return (
     <main className="app">
       <Header />
-      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

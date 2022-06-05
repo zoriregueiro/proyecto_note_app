@@ -1,3 +1,5 @@
+import "./css/note.css";
+
 export const Note = () => {
   const noteMock = [
     {
