@@ -6,16 +6,16 @@ async function checkAccountSession(req, res, next) {
   const { authorization } = req.headers;
 
   if (!authorization) {
-    res.status(401).send("user not registered");
+    return res.status(401).send("user not registered");
   }
 
-  const [prefix, token] = authorization.split(" ");
+  const [prefix, token] = authorization?.split(" ");
 
   if (prefix !== "Bearer") {
-    res.status(401).send("user not registered");
+    return res.status(401).send("user not registered");
   }
   if (!token) {
-    res.status(401).send("user not registered");
+    return res.status(401).send("user not registered");
   }
   try {
     const { user_id } = jsonwebtoken.verify(token, process.env.AUTH_JWT_SECRET);

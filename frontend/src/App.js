@@ -7,7 +7,9 @@ import { Register } from "./views/register/Register";
 import { Login } from "./views/login/Login";
 import { UserProfile } from "./views/profile/Profile";
 import { MyNotes } from "./views/my-notes/MyNotes";
+import { Note } from "./views/my-notes/note/Note";
 import { Footer } from "./components/Footer";
+
 import { NotFound } from "./views/not-found/NotFound";
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/my-notes" element={<MyNotes />} />
+        <Route path="/my-notes/:id" element={<Note />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

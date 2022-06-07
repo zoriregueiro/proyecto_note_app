@@ -6,6 +6,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 async function createCategory(req, res) {
   const { user_id } = req.claims;
   const categoryData = { ...req.body, user_id };
+
   let connection;
 
   try {
