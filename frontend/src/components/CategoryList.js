@@ -1,17 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { getCategories, createCategory } from "../services";
+import { getCategories, createCategory} from "../services";
 import { useForm } from "react-hook-form";
 
-// Hacer que la categoría sea clickable
-// Ver las notas de esa categoría
-// Un estado que guarde el ID de la categoría seleccionada
-// Iniciamos con el ID de la primera (si tiene)
-// Cuando seleccionamos otra, actualizamos el estado
-
-export const CategoryList = () => {
+export const CategoryList = ({ selectedCategory, setSelectedCategory }) => {
   const [categories, setCategories] = useState([]);
-
-  const [selectedCategory, setSelectedCategory] = useState();
 
   const {
     register,
@@ -56,9 +48,13 @@ export const CategoryList = () => {
       {categories.length > 0 && (
         <ul className="category-list">
           {categories.map((category) => {
+            const isSelected = category.id === selectedCategory;
             return (
-              <li key={category.id}>
-                <p>{category.name}</p>
+              <li
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+              >
+                <p className={isSelected && "selected"}>{category.name}</p>
               </li>
             );
           })}
