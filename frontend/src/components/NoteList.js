@@ -1,11 +1,11 @@
 import "./css/noteList.css";
 import { useNavigate } from "react-router-dom";
 
-export const NoteList = ({ notes }) => {
+export const NoteList = ({ notes, hasToRedirect }) => {
   const navigate = useNavigate();
 
   function redirect(id) {
-    navigate("/my-notes/" + id);
+    hasToRedirect && navigate("/my-notes/" + id);
   }
 
   return (

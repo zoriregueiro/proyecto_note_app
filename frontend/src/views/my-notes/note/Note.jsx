@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAuth } from "../../../context/auth-context";
 import { useNavigate } from "react-router-dom";
 import {
   deleteNote,
@@ -12,7 +11,6 @@ import "./note.css";
 
 export const Note = () => {
   const params = useParams();
-  const { user } = useAuth();
   const navigate = useNavigate();
 
   const [note, setNote] = useState();
@@ -24,57 +22,27 @@ export const Note = () => {
     const getNoteData = async () => {
       try {
         const response = await getNote(params.id);
-        // setNote(response.data);
-        setNote({
-          id: 6,
-          id_user: 1,
-          title: "Nota 1",
-          content: "Esto es una nota para la categoría 1",
-          created_at: "2022-05-31T18:35:53.000Z",
-          modified_at: null,
-          deleted_at: null,
-          image_url: null,
-          visibility: "public",
-          id_category: 1,
-        });
+        setNote(response.data[0]);
       } catch (error) {
         console.error(error);
       }
     };
 
     getNoteData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Para editar
-  // Creamos un estado para saber si está editando o no (hecho) X
-  // Pasamos al botón el setIsReadOnly(!!isReadOnly)
-  // Si está a true - Mostramos el contenido estático
-  // Si está a false - Mostramps el contenido editable - TextArea
-  // Dos estados, uno para el título y otro para el contenido
-  // Al textArea en la función onChange le pasáis el e.current.value y vais seteándolo al estado X
-  // Creamos un botón Guardar que se muestre solo si el isReadOnly = false
-  // Al hacer click en el botón hay que llamar al endpoint de editar nota y pasarle el contenido
-  // Y además seteamos la nota con el nuevo title y content (como en la visibilidad)
-  // Y seteamos el isReadOnly a true
+  const handleEditNote = () => setIsReadOnly(!isReadOnly);
 
-  const handleEditNote = async () => {
+  const handleUpdateNote = async () => {
     try {
-      await updateNote(params.id, title, content);
-      if (isReadOnly === "true") {
-      } else {
-        return (
-          <div>
-            <input type="text" id="titleNote" autoFocus />
-            <textarea
-              id="bodyNote"
-              onChange={(e) => setIsReadOnly(e.target.value)}
-            />
-            <button onClick={setNote}>Save</button>
-          </div>
-        );
-      }
-    } catch (err) {
-      console.log(err);
+      const titleData = title || note.title;
+      const contentData = content || note.content;
+      await updateNote(params.id, titleData, contentData);
+      setIsReadOnly(true);
+      setNote({ ...note, title, content });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -115,9 +83,27 @@ export const Note = () => {
           <small>{note.visibility}</small>
         </button>
       </div>
-      <h3>{note.title}</h3>
-      <p>{note.content}</p>
-      <p>By {user.name}</p>
+
+      {isReadOnly ? (
+        <>
+          <h3>{note.title}</h3>
+          <p>{note.content}</p>
+        </>
+      ) : (
+        <div>
+          <textarea
+            id="titleNote"
+            defaultValue={note.title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <textarea
+            id="bodyNote"
+            defaultValue={note.content}
+            onChange={(e) => setContent(e.target.value)}
+          />
+          <button onClick={handleUpdateNote}>Save</button>
+        </div>
+      )}
     </div>
   );
 };

@@ -6,6 +6,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 async function updateNote(req, res) {
   const noteData = { ...req.body };
   let connection;
+  console.log(noteData);
 
   try {
     const schema = Joi.object().keys({

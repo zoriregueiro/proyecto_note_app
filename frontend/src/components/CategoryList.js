@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getCategories, createCategory} from "../services";
+import { getCategories, createCategory } from "../services";
 import { useForm } from "react-hook-form";
 
 export const CategoryList = ({ selectedCategory, setSelectedCategory }) => {

@@ -5,6 +5,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 
 async function deleteNote(req, res) {
   const { noteId } = req.params;
+  console.log(req.params);
   let connection;
 
   const noteData = { noteId };

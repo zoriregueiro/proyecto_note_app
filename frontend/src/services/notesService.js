@@ -17,7 +17,7 @@ export function createNote(id_category, title, content) {
 }
 
 export function deleteNote(noteId) {
-  return axios.delete(`http://localhost:8000/api/notes/delete/${noteId}`);
+  return axios.put(`http://localhost:8000/api/notes/delete/${noteId}`);
 }
 
 export function updateNote(noteId, title, content) {

@@ -42,6 +42,7 @@ export function AuthProvider({ children }) {
 
   const logOut = () => {
     localStorage.clear("currentUser");
+    setIsAuthenticated(false);
     navigate("/");
   };
 
