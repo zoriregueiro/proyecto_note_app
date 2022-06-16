@@ -5,23 +5,11 @@
 }
 
 .note-list .note {
-  background-color: rgb(161, 235, 255);
+  background-color: rgb(196, 242, 255);
   border-radius: 10px;
   margin-bottom: 1rem;
   padding: 2rem;
   width: 70%;
-}
-
-.note-list div:nth-child(4n + 1) {
-  background-color: rgb(255, 255, 190);
-}
-
-.note-list div:nth-child(4n + 2) {
-  background-color: rgb(190, 255, 214);
-}
-
-.note-list div:nth-child(4n + 3) {
-  background-color: rgb(255, 190, 254);
 }
 
 .note .note-title {
