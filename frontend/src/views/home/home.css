@@ -1,7 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap");
 
-h2 {
+.home-section {
+  margin: 12px auto;
+  max-width: 738px;
+}
+
+.home-section h2 {
   font-family: "Coming Soon", cursive;
   text-align: center;
   font-size: 2.5rem;
+  margin-bottom: 12px;
 }

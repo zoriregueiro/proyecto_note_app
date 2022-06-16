@@ -9,14 +9,11 @@ export const NoteList = ({ notes, hasToRedirect }) => {
   }
 
   return (
-    <div className="note">
+    <div className="note-list">
       {notes.map((note) => (
-        <div
-          className="container"
-          onClick={() => redirect(note.id)}
-          key={note.id}
-        >
-          <p>{note.title}</p> <p>{note.content}</p>
+        <div className="note" onClick={() => redirect(note.id)} key={note.id}>
+          <p className="note-title">{note.title}</p>{" "}
+          <p className="note-content">{note.content}</p>
         </div>
       ))}
     </div>

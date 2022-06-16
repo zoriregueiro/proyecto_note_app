@@ -34,7 +34,7 @@ export const Register = () => {
     }
   };
   return (
-    <section className="register">
+    <section className="register-section">
       <h2>Register</h2>
       <form className="register-form" onSubmit={handleSubmit(handleSignUp)}>
         <fieldset>
@@ -95,7 +95,7 @@ export const Register = () => {
             {errors?.repeat_password && errors.repeat_password.message}
           </span>
         </fieldset>
-        <button className="register-button">Register</button>
+        <button className="register-form-button">Register</button>
       </form>
     </section>
   );

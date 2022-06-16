@@ -1,0 +1,68 @@
+.note-buttons button {
+  padding: 8px 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: var(--yale-blue);
+  color: #fff;
+  margin: 1rem;
+}
+
+.note-div {
+  margin-top: 1rem;
+  padding: 2rem;
+  width: 80%;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 190);
+  margin-left: 1rem;
+}
+
+.note-div .note-title {
+  margin-bottom: 0.5rem;
+}
+
+.note-div .note-content {
+  word-wrap: break-word;
+}
+
+.edit-note {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea#titleNote {
+  padding: 5px;
+  border: 2px solid #000000;
+  outline: none;
+  border-radius: 5px;
+  margin: 1rem;
+  resize: none;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 50%;
+  height: 2rem;
+}
+
+textarea#bodyNote {
+  padding: 0.3rem;
+  border: 2px solid #000000;
+  outline: none;
+  border-radius: 10px;
+  margin-left: 1rem;
+  resize: none;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 50%;
+  height: 15rem;
+}
+
+.save-note-button {
+  padding: 8px 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: var(--yale-blue);
+  color: #fff;
+  margin: 1rem;
+  width: 5rem;
+}

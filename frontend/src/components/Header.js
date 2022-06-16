@@ -12,7 +12,7 @@ export const Header = () => {
       </h1>
       <nav>
         {!isAuthenticated ? (
-          <ul>
+          <ul className="header-links-logout">
             <li>
               <Link to={"/register"}>Register</Link>
             </li>
@@ -21,12 +21,16 @@ export const Header = () => {
             </li>
           </ul>
         ) : (
-          <ul>
+          <ul className="header-links-login">
             <li>
-              <Link to={"/my-notes"}>My Notes</Link>
+              <Link className="my-notes-link" to={"/my-notes"}>
+                My Notes
+              </Link>
             </li>
             <li>
-              <button onClick={logOut}>Log Out</button>
+              <button className="log-out-button" onClick={logOut}>
+                Log Out
+              </button>
             </li>
           </ul>
         )}

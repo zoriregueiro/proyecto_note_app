@@ -1,11 +1,10 @@
+import "./my-notes.css";
 import React from "react";
 import { CategoryList } from "../../components/CategoryList";
 import { NoteList } from "../../components/NoteList";
 import { getNotes } from "../../services";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-// Hacer botón que nos lleve a una nota vacía
 
 export const MyNotes = () => {
   const navigate = useNavigate();
@@ -30,24 +29,24 @@ export const MyNotes = () => {
     navigate("/my-notes/new/" + selectedCategory);
   }
 
-  // Hacer nueva ruta my-notes/new
-  // Nuevo componente NewNote
-  // Mostramos los dos textAreas y no tiene defaultValue
-  // Y al escribir también los cogemos con los dos estados title y content
-  // Cuando le damos a guardar creamos la nota y redirigimos a my-notes
-
   return (
-    <>
-      <CategoryList
-        selectedCategory={selectedCategory}
-        setSelectedCategory={setSelectedCategory}
-      />
-      {notes.length > 0 ? (
-        <NoteList notes={notes} hasToRedirect />
-      ) : (
-        <p>No hay notas</p>
-      )}
-      <button onClick={redirect}>Add note</button>
-    </>
+    <div className="my-notes">
+      <div className="category-container">
+        <CategoryList
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+      </div>
+      <div className="note-container">
+        <button className="add-note-button" onClick={redirect}>
+          Add note
+        </button>
+        {notes.length > 0 ? (
+          <NoteList notes={notes} hasToRedirect />
+        ) : (
+          <p>There are no notes</p>
+        )}
+      </div>
+    </div>
   );
 };

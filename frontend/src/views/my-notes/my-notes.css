@@ -1,0 +1,42 @@
+div.my-notes {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-areas: "categoryList noteList";
+}
+
+.category-container {
+  grid-area: categoryList;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--black-chocolate);
+}
+
+.note-container {
+  grid-area: noteList;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-note-button {
+  padding: 8px 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: var(--yale-blue);
+  color: #fff;
+  width: 8rem;
+  margin: 1rem;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  .category-container {
+    display: block;
+  }
+  .note-container {
+    display: block;
+  }
+}

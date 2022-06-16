@@ -43,8 +43,10 @@ export function getCategories() {
   return axios.get("http://localhost:8000/api/categories");
 }
 
-export function createCategory(name) {
-  return axios.post("http://localhost:8000/api/categories/create", { name });
+export function createCategory(categoryName) {
+  return axios.post("http://localhost:8000/api/categories/create", {
+    name: categoryName,
+  });
 }
 
 export function deleteCategory(id_category) {

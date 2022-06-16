@@ -27,7 +27,7 @@ export const Login = () => {
   };
 
   return (
-    <section className="login">
+    <section className="login-section">
       <h2>Login</h2>
       <form className="login-form" onSubmit={handleSubmit(handleSignIn)}>
         <fieldset>
@@ -59,7 +59,7 @@ export const Login = () => {
           <span>{errors?.password && errors.password.message}</span>
         </fieldset>
 
-        <button className="login-button">Login</button>
+        <button className="login-form-button">Login</button>
       </form>
     </section>
   );

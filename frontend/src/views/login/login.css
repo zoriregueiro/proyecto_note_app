@@ -1,29 +1,29 @@
-@import url("https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap");
-
-section.login {
+.login-section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 12px;
 }
 
-section.login h2 {
-  margin-bottom: 1rem;
-  font-size: 2.5rem;
+.login-section h2 {
   font-family: "Coming Soon", cursive;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
 }
 
-form.login-form fieldset {
+.login-form fieldset {
   border: none;
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
 }
 
-section.login label {
+.login-form label {
   margin-bottom: 0.5rem;
+  color: #000000;
 }
 
-form.login-form input {
+.login-form input {
   padding: 0.3rem;
   outline: none;
   min-width: 300px;
@@ -31,16 +31,19 @@ form.login-form input {
   border: 2px solid #000000;
 }
 
-.login-button {
+.login-form-button {
   padding: 8px 16px;
   font-weight: bold;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  background: linear-gradient(90deg, rgb(6, 182, 15) 0%, rgb(71, 216, 88) 100%);
-  color: #fff;
+  background: var(--yale-blue);
+  color: white;
+  display: block;
+  margin-left: 0;
+  font-size: 16px;
 }
 
 .login-form span {
-  color: red;
+  color: tomato;
 }

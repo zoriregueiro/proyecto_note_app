@@ -1,3 +1,9 @@
+:root {
+  --yale-blue: #084887ff;
+  --black-chocolate: rgb(43, 43, 43);
+  --white: #ffffffff;
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -5,16 +11,7 @@
 }
 
 body {
-  background-color: rgb(254, 251, 246);
-}
-
-header {
-  background: #222222;
-  color: white;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: var(--alice-blue);
 }
 
 a {
@@ -28,24 +25,6 @@ a:visited {
 main.app {
   min-height: 100vh;
   display: grid;
-  gap: 1rem;
   grid-template-rows: auto 1fr auto;
-
   font-family: sans-serif;
-}
-
-ul {
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-}
-
-li {
-  padding: 1rem;
-}
-
-footer {
-  background: #222222;
-  color: white;
-  padding: 1rem;
 }

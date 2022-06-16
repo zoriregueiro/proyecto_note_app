@@ -20,7 +20,6 @@ async function createAccount(req, res) {
   } catch (error) {
     return res.status(400).send(error);
   }
-
   const now = new Date();
   const createDate = now.toISOString().substring(0, 19).replace("T", " ");
   const securePassword = await bcrypt.hash(accountData.password, HASH);

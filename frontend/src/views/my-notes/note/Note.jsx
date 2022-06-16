@@ -1,3 +1,4 @@
+import "./note.css";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -67,8 +68,8 @@ export const Note = () => {
   if (!note) return <></>;
 
   return (
-    <div className="note">
-      <div className="header-note">
+    <div>
+      <div className="note-buttons">
         <button onClick={() => navigate(-1)}>
           <p>Atrás</p>
         </button>
@@ -79,18 +80,19 @@ export const Note = () => {
           <p>Borrar</p>
         </button>
         <button onClick={handleVisibilityNote}>
-          <p>Visibilidad</p>
-          <small>{note.visibility}</small>
+          <p>Visibilidad: {note.visibility}</p>
         </button>
       </div>
 
       {isReadOnly ? (
         <>
-          <h3>{note.title}</h3>
-          <p>{note.content}</p>
+          <div className="note-div">
+            <h3 className="note-title">{note.title}</h3>
+            <p className="note-content">{note.content}</p>
+          </div>
         </>
       ) : (
-        <div>
+        <div className="edit-note">
           <textarea
             id="titleNote"
             defaultValue={note.title}
@@ -101,7 +103,9 @@ export const Note = () => {
             defaultValue={note.content}
             onChange={(e) => setContent(e.target.value)}
           />
-          <button onClick={handleUpdateNote}>Save</button>
+          <button className="save-note-button" onClick={handleUpdateNote}>
+            Save
+          </button>
         </div>
       )}
     </div>

@@ -4,22 +4,33 @@
   align-items: center;
 }
 
-.note-list li {
+.note-list .note {
   background-color: rgb(161, 235, 255);
   border-radius: 10px;
   margin-bottom: 1rem;
-  max-width: 20rem;
-  min-height: 10rem;
+  padding: 2rem;
+  width: 70%;
 }
 
-.note-list li:nth-child(4n + 1) {
+.note-list div:nth-child(4n + 1) {
   background-color: rgb(255, 255, 190);
 }
 
-.note-list li:nth-child(4n + 2) {
+.note-list div:nth-child(4n + 2) {
   background-color: rgb(190, 255, 214);
 }
 
-.note-list li:nth-child(4n + 3) {
+.note-list div:nth-child(4n + 3) {
   background-color: rgb(255, 190, 254);
+}
+
+.note .note-title {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.note .note-content {
+  word-wrap: break-word;
 }

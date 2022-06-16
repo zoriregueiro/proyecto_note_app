@@ -22,7 +22,7 @@ export const Home = () => {
   });
 
   return (
-    <section className="home">
+    <section className="home-section">
       <h2>Latest Notes</h2>
       <NoteList notes={notes} />
     </section>

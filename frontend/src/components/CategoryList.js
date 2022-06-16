@@ -1,3 +1,4 @@
+import "./css/categoryList.css";
 import React, { useState, useEffect } from "react";
 import { getCategories, createCategory } from "../services";
 import { useForm } from "react-hook-form";
@@ -31,26 +32,46 @@ export const CategoryList = ({ selectedCategory, setSelectedCategory }) => {
 
   const handleCreateCategory = async (formData) => {
     try {
-      await createCategory(formData.name);
+      await createCategory(formData.categoryName);
       const response = await getCategories();
       setCategories(response.data);
-      setValue("name", "");
+      setValue("categoryName", "");
     } catch (error) {
-      setError("name", {
+      setError("categoryName", {
         type: "custom",
-        message: "name is required",
+        message: "Category is required",
       });
     }
   };
 
   return (
-    <>
+    <div className="category-column">
+      <form
+        className="category-form"
+        onSubmit={handleSubmit(handleCreateCategory)}
+      >
+        <fieldset>
+          <input
+            placeholder="Write a category"
+            type="text"
+            name="categoryName"
+            id="categoryName"
+            {...register("categoryName", {
+              required: "Required field",
+            })}
+          />
+          <span>{errors?.categoryName && errors.categoryName.message}</span>
+        </fieldset>
+        <button className="add-category-button">Add category</button>
+      </form>
+
       {categories.length > 0 && (
         <ul className="category-list">
           {categories.map((category) => {
             const isSelected = category.id === selectedCategory;
             return (
               <li
+                className="category-tag"
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
               >
@@ -60,25 +81,6 @@ export const CategoryList = ({ selectedCategory, setSelectedCategory }) => {
           })}
         </ul>
       )}
-
-      <form
-        className="login-form"
-        onSubmit={handleSubmit(handleCreateCategory)}
-      >
-        <fieldset>
-          <input
-            placeholder="Add category"
-            type="text"
-            name="name"
-            id="name"
-            {...register("name", {
-              required: "Required field",
-            })}
-          />
-          <span>{errors?.name && errors.name.message}</span>
-        </fieldset>
-        <button className="Add-category">Add category</button>
-      </form>
-    </>
+    </div>
   );
 };
